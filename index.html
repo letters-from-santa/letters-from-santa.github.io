@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>🎅 Santa's Christmas Card</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+    html, body {
+      min-height: 101vh; /* 🔑 스크롤 가능 상태 강제 */
+      margin: 0;
+      overflow-x: hidden;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0b1d3a;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    .card-container {
+        text-align: center;
+        z-index: 2;
+    }
+
+    .open-btn {
+        background: #c62828;
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        font-size: 18px;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+
+    .card {
+        width: 90%;
+        max-width: 360px;
+        background: #fff;
+        color: #333;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        display: none;
+        animation: fadeIn 1.2s ease;
+    }
+
+    h2 {
+        color: #c62828;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ❄ Snow */
+    .snow {
+        position: absolute;
+        top: -10px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+        }
+    }
+</style>
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      window.scrollTo(0, 1);
+    }, 100);
+  });
+</script>
+</head>
+
+<body>
+
+<!-- ❄ 눈 -->
+<script>
+for (let i = 0; i < 50; i++) {
+    const snow = document.createElement("div");
+    snow.className = "snow";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.width = snow.style.height = Math.random() * 6 + 4 + "px";
+    snow.style.animationDuration = Math.random() * 5 + 5 + "s";
+    document.body.appendChild(snow);
+}
+</script>
+
+<div class="card-container">
+    <button class="open-btn" onclick="openCard()">🎁 カード開く</button>
+
+    <div class="card" id="card">
+        <h2>🎄 Merry Christmas!</h2>
+        <p id="nameText"></p>
+<div id="letter" style="text-align: left;">
+</div>
+        <p style="margin-top:15px;">- 🎅 サンタクロースより</p>
+    </div>
+</div>
+
+<!-- 🎵 キャロル -->
+<audio id="bgm" loop>
+    <source src="christmas-music-455383.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openCard() {
+    document.querySelector(".open-btn").style.display = "none";
+    document.getElementById("card").style.display = "block";
+    document.getElementById("bgm").play().catch(()=>{});
+}
+
+const params = new URLSearchParams(location.search);
+const name = params.get("name");
+const contents = params.get("contents");
+
+document.getElementById("nameText").innerHTML =
+    name ? `<b>${name}</b>へ 🎁` : "特別なあなたへ 🎁";
+
+
+if(contents == 1) {
+ document.getElementById("letter").innerText =
+`メリークリスマス！
+
+北極ではみんな大忙しだったんだ。
+サンタさんや小人たちが世界中の良い子たちに
+プレゼントを届けるために準備で大忙し。
+トナカイたちも世界中に
+ソリで飛んでいく準備で大忙し。
+
+やっと${name}のところに来れて嬉しいよ！
+${name}は今年、いい子にしていたかな？
+
+これからもお父さんとお母さんのためにも
+良い子でいてね。
+
+${name}のために
+プレゼントを持ってきたよ。
+きみのクリスマスが
+喜びいっぱいのクリスマスになりますように。
+
+サンタクロースより
+`;
+} else if(contents == 2) {
+ document.getElementById("letter").innerText =
+`
+北極からこんにちは！
+
+良い子の名前リストをチェックしていたら、
+${name}の名前が
+いちばん最初にあったよ！
+
+とても良い子にしていたみたいで、
+サンタさんはとても嬉しいよ。
+
+そんなきみのために
+プレゼントを持ってきたよ。
+
+ホー、ホー、ホー！
+メリークリスマス！
+
+サンタクロースより
+`;
+} else  {
+ document.getElementById("letter").innerText =
+`
+${name}へ
+メリークリスマス！
+
+サンタさんのために
+素敵なお手紙を書いてくれてありがとう。
+${name}からのお手紙は
+とっても嬉しかったよ。
+
+君の手紙から元気をもらったおかげで、
+今夜は世界中の子どもたちに
+プレゼントを届けられたよ。
+
+君はいい子だから、
+昨日の夜は早く寝たのかな？
+
+いい子の${name}のために
+プレゼントを置いておいたよ。
+楽しんでね。
+
+メリークリスマス！
+サンタクロースより
+`;
+}
+</script>
+
+</body>
+</html>
