@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ゆうみんくんへ QRカード</title>
+<style>
+  body {
+    background: linear-gradient(to bottom, #08121f, #3b5a8f);
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding-top: 50px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 15px;
+    width: 360px;
+    margin: auto;
+    padding: 20px;
+    color: #000;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
+  .title {
+    font-size: 24px;
+    color: #c62828;
+    margin-bottom: 10px;
+  }
+  .qr {
+    width: 260px;
+    height: 260px;
+    margin: 15px auto;
+  }
+  .footer {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="title">🎄 ゆうみんくんへ 🎄</div>
+  <img class="qr"
+    src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://letters-from-santa.github.io/?name=ゆうみんくん&contents=3"
+    alt="QR Code">
+  <div class="footer">メリークリスマス！サンタからのカードです🎅</div>
+</div>
+
+</body>
+</html>
